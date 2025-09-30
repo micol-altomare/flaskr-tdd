@@ -20,11 +20,11 @@
 
       {% if not session.logged_in %}
       <a class="btn btn-success" role="button" href="{{ url_for('login') }}"
-        >log in</a
+        >Log in</a
       >
       {% else %}
       <a class="btn btn-warning" role="button" href="{{ url_for('logout') }}"
-        >log out</a
+        >Log out</a
       >
       {% endif %}
 
