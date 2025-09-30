@@ -1,4 +1,3 @@
-import os
 import pytest
 from pathlib import Path
 import json
@@ -87,17 +86,18 @@ def test_delete_message(client):
     data = json.loads(rv.data)
     assert data["status"] == 1
 
+
 def test_search(client):
     """Ensure the search functionality works"""
-    rv = client.get('/search/?query=Hello')
+    rv = client.get("/search/?query=Hello")
     assert rv.status_code == 200
-    rv = client.get('/search/')
+    rv = client.get("/search/")
     assert rv.status_code == 200
+
 
 def test_login_required_for_adding_message(client):
     """Ensure that adding a message requires login"""
     rv = client.post(
-        "/add",
-        data=dict(title="Test", text="This is a test"),
-        follow_redirects=True)
+        "/add", data=dict(title="Test", text="This is a test"), follow_redirects=True
+    )
     assert b"Unauthorized" in rv.data
